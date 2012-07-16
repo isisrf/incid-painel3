@@ -51,9 +51,20 @@
     <!-- Site configuration -->
     <script type="text/javascript">
 
+        function correctTooltip() {
+            var tooltip = $(".wax-tooltip");
+            var tooltip_number = parseFloat(tooltip.text());
+            if (tooltip_number > 0) {
+                tooltip.text((tooltip_number * 100).toString() + "% positivo");
+            }
+            if (tooltip_number < 0) {
+                tooltip.text((tooltip_number * -100).toString() + "% negativo");
+            }
+        }
+
         // Make a new map in #map
         var main = Map('map', {
-            api: 'http://a.tiles.mapbox.com/v3/ibase.vazio.jsonp',
+            api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-municipios.jsonp',
             features: [
                 'zoomwheel',
                 'tooltips',

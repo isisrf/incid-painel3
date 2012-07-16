@@ -2760,6 +2760,16 @@ wax.tooltip = function() {
     function getTooltip(feature) {
         var tooltip = document.createElement('div');
         tooltip.className = 'wax-tooltip wax-tooltip-0';
+        
+        var f = parseFloat(feature);
+        //warning extremamante mal feito
+        if (f > 0) {
+                feature = Math.floor((f * 100).toString()) + "% positivo";
+            }
+        if (f < 0) {
+            feature = Math.floor((f * -100).toString()) + "% negativo";
+        }
+        
         tooltip.innerHTML = feature;
         return tooltip;
     }
