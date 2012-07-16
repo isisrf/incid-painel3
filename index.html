@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Explorando os dados dos Indicadores da Cidadania Percebida</title>
+    <link rel="stylesheet" href="map.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+</head>
+<body class="right">
+    <div id="header"><div class="limiter">
+        <img src="img/logo.png">
+        <h1>Explorando os dados dos Indicadores da Cidadania Percebida</h1>
+    </div></div>
+    <div id="content"><div class="limiter">
+        <div id="about">
+            <p>O Incid &eacute; um sistema com quatro conjuntos de indicadores, que visa monitorar a cidadania do Leste Fluminense. </p>
+            <p>Este mapa &eacute; um exerc&iacute;cio com os dados do conjunto Indicadores da Cidadania Percebida.</p>
+			<p>Ele foi produzido com base nos microdados dos Indicadores da Cidadania (Incid) - ou seja, utilizando-se dos dados brutos advindos das respostas aos question&aacute;rios aplicados pelo Ibase em 14 munic&iacute;pios fluminenses para a composi&ccedil;&atilde;o do Painel 3 - Cidadania Percebida do Incid.</p>
+        </div>
+        <div id="nav" class="layers">
+          <a data-control="layer" href="#q11">Educa&ccedil;&atilde;o: atende as necessidades ou n&atilde;o</a>
+          <a data-control="layer" href="#q13">Participa&ccedil;&atilde;o melhora a educa&ccedil;&atildeo ou n&atilde;o</a>
+          <a data-control="layer" href="#q14">Sa&uacute;de: atende as necessidades ou n&atilde;o</a>
+          <a data-control="layer" href="#q16">Participa&ccedil;&atilde;o melhora a sa&uacute;de ou n&atilde;o</a>
+		  <a data-control="layer" href="#q171">&Aacute;gua: limpa ou suja</a>
+          <a data-control="layer" href="#q172">Ar: limpo ou sujo</a>
+          <a data-control="layer" href="#q173">Pra&ccedil;as e ruas: limpas ou sujas</a>
+          <a data-control="layer" href="#q19">Participa&ccedil;&atilde;o melhora o meio ambiente ou n&atilde;o</a>
+		  <a data-control="layer" href="#q24">Participa&ccedil;&atilde;o melhora as condi&ccedil;&otilde;es de vida do lugar</a>
+          <a data-control="layer" href="#q27">Lugar de moradia vai melhorar ou piorar</a>
+        </div>
+		<br>
+		<div id="about">
+        <h2>Entenda os dados</h2>
+        <p>As propor&ccedil;&otilde;es de respostas negativas ou positivas em munic&iacute;pios foram calculadas da seguinte maneira: do total de respostas v&aacute;lidas, foram subtra&iacute;das as respostas negativas das positivas, e posteriormente calculada a propor&ccedil;&atilde;o entre esse valor e o n&uacute;mero total de respostas. </p><p>Priorizando o resultado que se mostra mais expressivo - positivo ou negativo -, foram definidas as faixas de incid&ecirc;ncia de respostas de cada munic&iacute;pio. Se a maioria das respostas recolhidas &eacute; positiva, o munic&iacute;pio entra na grada&ccedil;&atilde;o de cores verde; se a maioria das respostas &eacute; negativa, o munic&iacute;pio entra na grada&ccedil;&atilde;o de cores laranja.</p><p> O objetivo &eacute; comparar munic&iacute;pios com maior incid&ecirc;ncia de respostas positivas ou negativas para cada pergunta.</p>
+        </div>
+		</div>
+    </div></div>
+    <div id="map" class="map"></div>
+
+    <!-- External libraries and site script -->
+    <script src="ext/jquery.min.js"></script>
+    <script src="ext/modestmaps.min.js"></script>
+    <script src="ext/wax/wax.mm.js"></script>
+    <script src="ext/wax/wax.ext.js"></script>
+    <script src="ext/easey.js"></script>
+    <script src="ext/mmg.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Site configuration -->
+    <script type="text/javascript">
+
+        // Make a new map in #map
+        var main = Map('map', {
+            api: 'http://a.tiles.mapbox.com/v3/ibase.vazio.jsonp',
+            features: [
+                'zoomwheel',
+                'tooltips',
+                'zoombox',
+                'zoompan',
+                'legend',
+                'share'
+            ]
+        });
+
+        main.layers({
+            principal: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-municipios.jsonp',
+                center: {                
+					zoom:9,
+				},
+				group: 0,
+				initial: true,
+                
+            },
+            q11: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q11.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+            q13: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q13.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+            q14: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q14.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+			q16: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q16.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+			q171: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q171.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+			q172: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q172.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },q173: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q173.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+			q19: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q19.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },
+			q24: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q24.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            },q27: {
+                api: 'http://a.tiles.mapbox.com/v3/ibase.painel3-incid-q27.jsonp',
+                center: {
+                    zoom: 9,
+                },
+                group: 0
+            }
+        });
+    </script>
+</body>
+</html>
