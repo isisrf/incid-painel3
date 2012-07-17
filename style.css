@@ -212,8 +212,7 @@ a.zoomer {
 }
 
 .wax-tooltip {
-  left:auto;
-  right:330px;
+  margin-right:354px !important;
   top:60px;
 }
 .wax-legend {
